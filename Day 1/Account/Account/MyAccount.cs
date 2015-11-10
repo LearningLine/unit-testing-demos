@@ -19,7 +19,6 @@ namespace Account
 			//IoCContainer.Register<ILogger>(new ConsoleLogger(),"console");
 
 			//var logger = IoCContainer.Resolve<ILogger>();
-
 		}
 
 		#region Peel
