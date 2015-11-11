@@ -1,3 +1,95 @@
+
+
+
+Why we should test?
+
+   Bugs are cheaper to fix earlier in the process
+
+   High confidence in the code.
+     Refactor more conidently than before
+   
+   Runnable Documentation
+     Useful when building APIs for others consume.
+     Third party library discovery
+
+   Refining the interface by doing test first
+     You become consumer of your code. Dogfooding
+
+   Prove that the code still does what it did when I wrote it.
+
+  Naming tests
+    Make them descriptive
+     So that when they fail you don't have the open the test. You can just read the name
+
+    Naming conventions don't apply all the time
+ 
+
+Design for testing    
+    
+    Red/Green Refactor
+      Know that the test can fail. 
+
+   Tight Coupling
+      Depend on abstractions (In C# this is Interfaces or Abstract base classes) 
+
+    Where do the abstractions come from?
+        When method is called you can pass in the dependency
+        When it's ctor'ed you can pass it in
+        or you can use formal DI (IoC) 
+
+    DI
+	Parameter Injection - 
+           Scope of the dep is just for the method
+           If the dep is going to change of the lifetime of the object. 
+ 
+	Ctor Injection - 
+           When the dep is not going to change for the life of the object.
+ 
+	Property Injection - For optional deps
+  
+    Dealing with Statics
+
+       Peeling 
+         Take the static off the top (or bottom)
+
+	Extract the static and convert to an abstraction.
+        Introduce an interface, Service which will wrap the static and forwarded calls
+	The service implements the newly created interface 
+
+      Slicing    
+         Isolate the static in the middle
+	Lightweight version - Func<T> delegate 
+	Overrideen ctor that passed the static in as the Func<T> 
+	Under test we can pass our own Func<T> 
+
+Approvals 
+	Visual Assertions
+	Picture is worth 1000 tests
+
+
+Mocking
+	Fake - NoOp do nothing methods
+	Stub - Drive your test in specific ways
+	Spy - Record actions and store for later
+	Mock - Similar to spy, Verify behavior (maybe with Assert or just boolean return)
+
+	Options from creating test doubles
+		1. Hand roll
+		2. Mocking framework
+			Moq
+			Rhino.Mocks
+
+			TypeMock
+			MSFakes 
+Using shims to replace legacy code. Often let's you mock things you shouldn't be able to mock (Private, Sealed etc..). Testing Sharepoint 
+
+
+Labs
+1. Red Green TDD - Priority Queue
+2. Depend on abstractions and IoC (Email and SMS)
+
+
+
 TimeProvider to Freeze Time
 https://gist.github.com/Foovanadil/9ca4330a436fc2e94d6d
 
